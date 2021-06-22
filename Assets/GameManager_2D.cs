@@ -21,6 +21,9 @@ public class GameManager_2D : MonoBehaviour
     public TextMeshProUGUI m_scoreText;
 
     [Header("Rings")]
+    public float spawnTime;
+    float lastSpawnTime = 0;
+
     public List<GameObject> m_allRings;
 
     public GameObject ringPrefab;
@@ -30,7 +33,7 @@ public class GameManager_2D : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        lastSpawnTime = 0;
     }
 
     // Update is called once per frame
@@ -39,6 +42,13 @@ public class GameManager_2D : MonoBehaviour
         for (int i = m_allRings.Count - 1; i >= 0; i--)
         {
             if (!m_allRings[i]) m_allRings.RemoveAt(i);
+        }
+
+        if (Time.time - lastSpawnTime > spawnTime)
+        {
+            lastSpawnTime = Time.time;
+            GameObject t = Instantiate(ringPrefab, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity, null);
+            m_allRings.Add(t);
         }
 
 

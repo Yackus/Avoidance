@@ -306,6 +306,7 @@ MonoBehaviour:
   m_birdMovement: {fileID: 1527813088}
   m_bgSript: {fileID: 884418036}
   m_scoreText: {fileID: 1893952255}
+  spawnTime: 2
   m_allRings:
   - {fileID: 1149805101}
   ringPrefab: {fileID: 1954170466883776324, guid: c88016d086363994aa001d8c0d78579a, type: 3}
@@ -928,6 +929,7 @@ GameObject:
   - component: {fileID: 1527813089}
   - component: {fileID: 1527813088}
   - component: {fileID: 1527813091}
+  - component: {fileID: 1527813092}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Untagged
@@ -949,8 +951,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: 20
   flapForce: 10
-  maxHeight: 5.7
-  minHeight: -4.2
+  maxHeight: 4
+  minHeight: -4
 --- !u!212 &1527813089
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1035,6 +1037,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &1527813092
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527813087}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1797067010
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,6 +1228,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1395309309, guid: c88016d086363994aa001d8c0d78579a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1954170466883776324, guid: c88016d086363994aa001d8c0d78579a, type: 3}
       propertyPath: m_Name
       value: Ring
