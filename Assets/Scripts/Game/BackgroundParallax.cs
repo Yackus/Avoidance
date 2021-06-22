@@ -13,10 +13,6 @@ public class BackgroundParallax : MonoBehaviour
     void Update()
     {
         CheckPosition();
-    }
-
-    void FixedUpdate()
-    {
         Scroll();
     }
 
@@ -29,8 +25,10 @@ public class BackgroundParallax : MonoBehaviour
 
     void Scroll()
     {
-        background1.transform.position -= new Vector3(Time.deltaTime * scrollSpeed, 0,0);
-        background2.transform.position -= new Vector3(Time.deltaTime * scrollSpeed, 0,0);
-        background3.transform.position -= new Vector3(Time.deltaTime * scrollSpeed, 0,0);
+        Vector3 movement = new Vector3(Time.deltaTime * scrollSpeed, 0, 0);
+
+        background1.transform.position -= movement;
+        background2.transform.position -= movement;
+        background3.transform.position -= movement;
     }
 }
