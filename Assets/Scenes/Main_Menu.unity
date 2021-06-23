@@ -774,6 +774,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e9b2fe85cbae70546bacb8e44f2e1261, type: 2}
   - {fileID: 11400000, guid: 1b3864bdc7437a442a9be0ad1d3f496a, type: 2}
   - {fileID: 11400000, guid: d733e6ce755f0134aab0d49912b0de77, type: 2}
+  - {fileID: 11400000, guid: 28b05554a81a3d64ca8128bbc27d0116, type: 2}
+  - {fileID: 11400000, guid: fb858122b3b67304595b860cc86b7dbd, type: 2}
+  - {fileID: 11400000, guid: cb5398d6eae3df241877bb0f05771730, type: 2}
+  - {fileID: 11400000, guid: 92d64dd2c16d3d349b8f5aa53787a9ed, type: 2}
   currentStage: -1
   timeBeforeMessage: 2
   m_MessageManager: {fileID: 0}
