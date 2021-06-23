@@ -7,9 +7,11 @@ public class BirdMovement : MonoBehaviour
     Vector2 velocity;
     Animator anim;
 
+    [Header("Controls")]
     public float gravity = 5.0f;
     public float flapForce = 5.0f;
 
+    [Header("Restrictions")]
     public float maxHeight;
     public float minHeight;
 

@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class MessageManager : MonoBehaviour
 {
-
-    public bool display = false;
+    [Header("Textbox")]
+    public bool updateText = false;
 
     public GameObject button;
     public TextMeshProUGUI message_text;
 
+    [Header("Messages")]
     public int currentMessage = 0;
 
     public bool noMoreMessages = false;
@@ -25,24 +26,31 @@ public class MessageManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (display)
+        //Update text if displaying
+        if (updateText)
         {
             message_text.text = messages[currentMessage];
         }
     }
 
+    /// <summary>
+    /// Set as active and start displaying messages
+    /// </summary>
     public void StartMessages()
     {
-        display = true;
+        updateText = true;
         button.SetActive(true);
     }
 
+    /// <summary>
+    /// Display the next text message
+    /// </summary>
     public void NextText()
     {
         if (currentMessage + 1 >= messages.Count)
         {
             noMoreMessages = true;
-            display = false;
+            updateText = false;
             button.SetActive(false);
         }
         else

@@ -21,7 +21,7 @@ public class ProgressManager : MonoBehaviour
     public List<messagesOBJ> messagesList;
 
     public Stages currentStage;
-
+    
     float startTime;
 
     public float timeBeforeMessage = 2;
@@ -48,6 +48,47 @@ public class ProgressManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Find the message manager and restart the timer
+        if (!m_MessageManager && findMessageManager)
+        {
+            GameObject mm = GameObject.Find("MessageManager");
+            if (mm)
+            {
+                m_MessageManager = mm.GetComponent<MessageManager>();
+            }
+
+            startTime = Time.time;
+        }
+
+        //Update the messages for each stage
+        if (m_MessageManager && !messageStarted && Time.time - startTime >= timeBeforeMessage)
+        {
+            messageStarted = true;
+            m_MessageManager.messages = (messagesList[(int)currentStage]).messages;
+            m_MessageManager.StartMessages();
+        }
+
+        //If no more messages are left, and it is specified, go to next stage
+        if (m_MessageManager != null && messagesList[(int)currentStage].nextSceneOnClear && m_MessageManager.noMoreMessages)
+        {
+            NextStage();
+        }
+    }
+
+    /// <summary>
+    /// Progresses the game to the next stage
+    /// </summary>
+    public void NextStage()
+    {
+        Debug.Log("Next!");
+        currentStage++;
+        if (m_MessageManager) m_MessageManager.noMoreMessages = false;
+        m_MessageManager = null;
+        findMessageManager = true;
+        loadNewStage = true;
+        messageStarted = false;
+
+        //If needing to load new stage, its done here
         if (loadNewStage)
         {
             loadNewStage = false;
@@ -92,39 +133,5 @@ public class ProgressManager : MonoBehaviour
                     break;
             }
         }
-
-        if (!m_MessageManager && findMessageManager)
-        {
-            GameObject mm = GameObject.Find("MessageManager");
-            if (mm)
-            {
-                m_MessageManager = mm.GetComponent<MessageManager>();
-            }
-
-            startTime = Time.time;
-        }
-
-        if (m_MessageManager && !messageStarted && Time.time - startTime >= timeBeforeMessage)
-        {
-            messageStarted = true;
-            m_MessageManager.messages = (messagesList[(int)currentStage]).messages;
-            m_MessageManager.StartMessages();
-        }
-
-        if (m_MessageManager != null && messagesList[(int)currentStage].nextSceneOnClear && m_MessageManager.noMoreMessages)
-        {
-            NextStage();
-        }
-    }
-
-    public void NextStage()
-    {
-        Debug.Log("Next!");
-        currentStage++;
-        if (m_MessageManager) m_MessageManager.noMoreMessages = false;
-        m_MessageManager = null;
-        findMessageManager = true;
-        loadNewStage = true;
-        messageStarted = false;
     }
 }

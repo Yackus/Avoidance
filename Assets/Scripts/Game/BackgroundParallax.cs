@@ -16,6 +16,9 @@ public class BackgroundParallax : MonoBehaviour
         Scroll();
     }
 
+    /// <summary>
+    /// Update positions so that they loop back around
+    /// </summary>
     void CheckPosition()
     {
         if (background1.transform.position.x < -24) background1.transform.position = new Vector3(background3.transform.position.x + 24, 0, 0);
@@ -23,6 +26,7 @@ public class BackgroundParallax : MonoBehaviour
         if (background3.transform.position.x < -24) background3.transform.position = new Vector3(background2.transform.position.x + 24, 0, 0);
     }
 
+    //Move images based on delta time
     void Scroll()
     {
         Vector3 movement = new Vector3(Time.deltaTime * scrollSpeed, 0, 0);

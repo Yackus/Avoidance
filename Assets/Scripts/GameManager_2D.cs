@@ -47,27 +47,32 @@ public class GameManager_2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Clear null gameobjects
         for (int i = m_allRings.Count - 1; i >= 0; i--)
         {
             if (!m_allRings[i]) m_allRings.RemoveAt(i);
         }
 
+        //Spawn ring every x seconds
         if (Time.time - lastSpawnTime > spawnTime)
         {
             lastSpawnTime = Time.time;
             GameObject t = Instantiate(ringPrefab, new Vector3(10, Random.Range(-3, 3), 0), Quaternion.identity, null);
             m_allRings.Add(t);
         }
-
-
+        
+        //Update background speed
         m_bgSript.scrollSpeed = m_currentSpeed;
 
+        //calc new movement vector
         Vector3 newMovement = new Vector3(m_currentSpeed, 0, 0);
 
+        //Update the velocity of each ring, and calculate if player has gone through a ring
         foreach (GameObject _ring in m_allRings)
         {
             Rigidbody2D _ringRB = _ring.GetComponent<Rigidbody2D>();
 
+            //Going through ring gives points
             if (_ringRB.gravityScale == 0 && Vector3.Distance(_ring.transform.position, m_bird.transform.position) < 0.5f)
             {
                 _ringRB.gravityScale = 1;
