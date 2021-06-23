@@ -7,6 +7,7 @@ public class GameManager_2D : MonoBehaviour
 {
     [Header("Current Game")]
     public float m_currentScore = 0;
+    public float requiredScore = 5;
 
     public float m_currentSpeed = 1;
 
@@ -28,12 +29,19 @@ public class GameManager_2D : MonoBehaviour
 
     public GameObject ringPrefab;
 
-
+    ProgressManager m_progressManager;
 
     // Start is called before the first frame update
     void Start()
     {
         lastSpawnTime = 0;
+
+        GameObject PM = GameObject.Find("ProgressManager");
+
+        if (PM)
+        {
+            m_progressManager = PM.GetComponent<ProgressManager>();
+        }
     }
 
     // Update is called once per frame
@@ -65,7 +73,12 @@ public class GameManager_2D : MonoBehaviour
                 _ringRB.gravityScale = 1;
                 m_currentScore += 1;
 
-                m_scoreText.text = "SCORE\n" + m_currentScore;
+                m_scoreText.text = "SCORE\n" + m_currentScore + " / " + requiredScore;
+
+                if (m_progressManager && m_currentScore >= requiredScore)
+                {
+                    m_progressManager.NextStage();
+                }
             }
             else if (_ringRB.gravityScale == 0)
             {

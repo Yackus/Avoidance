@@ -1419,3 +1419,92 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &6437509260566350207
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6437509260435558799, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437509260983453791, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437509260983453791, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437509260983453791, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437509260983453791, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437509260983453791, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437509260983453791, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437509260983453791, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437509260983453791, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437509260983453791, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437509260983453791, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437509260983453791, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437509260983453792, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
+      propertyPath: messages.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437509260983453792, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
+      propertyPath: messages.Array.data[0]
+      value: this is fun!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437509260983453792, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
+      propertyPath: messages.Array.data[1]
+      value: I love this
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437509260983453793, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
+      propertyPath: m_Name
+      value: MessageManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437509260983453793, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437509261847859216, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437509261847859216, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437509261847859216, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
+      propertyPath: m_isOrthographic
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
