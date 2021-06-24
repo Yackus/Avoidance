@@ -29,10 +29,12 @@ public class ProgressManager : MonoBehaviour
     bool messageStarted = false;
 
     bool findMessageManager = false;
+    bool findThoughtManager = false;
 
     bool loadNewStage = false;
 
     public MessageManager m_MessageManager;
+    public ThoughtManager m_ThoughtManager;
 
     private void Awake()
     {
@@ -48,6 +50,16 @@ public class ProgressManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!m_ThoughtManager && findThoughtManager)
+        {
+            GameObject tm = GameObject.Find("ThoughtManager");
+            if (tm)
+            {
+                findThoughtManager = false;
+                m_ThoughtManager = tm.GetComponent<ThoughtManager>();
+            }
+        }
+
         //Find the message manager and restart the timer
         if (!m_MessageManager && findMessageManager)
         {
@@ -60,6 +72,8 @@ public class ProgressManager : MonoBehaviour
             startTime = Time.time;
         }
 
+
+
         //Update the messages for each stage
         if (m_MessageManager && !messageStarted && Time.time - startTime >= timeBeforeMessage)
         {
@@ -71,7 +85,17 @@ public class ProgressManager : MonoBehaviour
         //If no more messages are left, and it is specified, go to next stage
         if (m_MessageManager != null && messagesList[(int)currentStage].nextSceneOnClear && m_MessageManager.noMoreMessages)
         {
-            NextStage();
+            if (m_ThoughtManager && m_ThoughtManager.clearToProgress)
+            {
+                if (m_ThoughtManager.toSpawn <= 0 && m_ThoughtManager.m_thoughts.Count <= 0)
+                {
+                    NextStage();
+                }
+            }
+            else
+            {
+                NextStage();
+            }
         }
     }
 
@@ -87,6 +111,9 @@ public class ProgressManager : MonoBehaviour
         findMessageManager = true;
         loadNewStage = true;
         messageStarted = false;
+
+        m_ThoughtManager = null;
+        findThoughtManager = true;
 
         //If needing to load new stage, its done here
         if (loadNewStage)

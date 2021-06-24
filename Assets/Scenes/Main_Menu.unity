@@ -781,6 +781,7 @@ MonoBehaviour:
   currentStage: -1
   timeBeforeMessage: 2
   m_MessageManager: {fileID: 0}
+  m_ThoughtManager: {fileID: 0}
 --- !u!4 &1117009360
 Transform:
   m_ObjectHideFlags: 0
@@ -1303,7 +1304,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 1034506132}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 10
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0

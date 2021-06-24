@@ -90,7 +90,7 @@ public class GameManager_2D : MonoBehaviour
                 _ringRB.velocity = -newMovement;
             }
 
-            if (_ring.transform.position.x < -12)
+            if (_ring.transform.position.x < -12 || _ring.transform.position.y < -12)
             {
                 Destroy(_ring);
             }
