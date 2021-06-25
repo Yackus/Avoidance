@@ -26,7 +26,8 @@ public class Ring : MonoBehaviour
 
                 if (Vector2.Distance( bird.transform.position, transform.position) < 3.0f)
                 {
-                    transform.position += ((transform.position - bird.transform.position).normalized + (Vector3)bird.GetComponent<BirdMovement>().GetVel()) * Time.deltaTime ;
+                    transform.position += 5 * (transform.position - bird.transform.position) * Time.deltaTime;
+                    GetComponent<Rigidbody2D>().gravityScale = 1;
                 }
             }
             else

@@ -116,9 +116,14 @@ public class ProgressManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            NextStage();
+        }
+
         if (startFade)
         {
-            fade.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, fade.GetComponent<SpriteRenderer>().color.a + 0.01f);
+            fade.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, fade.GetComponent<SpriteRenderer>().color.a + 0.005f);
 
             if (fade.GetComponent<SpriteRenderer>().color.a >= 1)
             {
@@ -128,7 +133,7 @@ public class ProgressManager : MonoBehaviour
 
         if (removeFade)
         {
-            fade.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, fade.GetComponent<SpriteRenderer>().color.a - 0.01f);
+            fade.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, fade.GetComponent<SpriteRenderer>().color.a - 0.005f);
 
             if (fade.GetComponent<SpriteRenderer>().color.a <= 0)
             {
