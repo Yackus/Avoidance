@@ -71,6 +71,13 @@ public class ProgressManager : MonoBehaviour
                     m_ThoughtManager.toSpawn = (thoughtsList[(int)currentStage]).toSpawn;
 
                     m_ThoughtManager.spawnMode = (thoughtsList[(int)currentStage]).spawnMode;
+
+                    m_ThoughtManager.canMoveThoughts = (thoughtsList[(int)currentStage]).canMoveThoughts;
+
+                    m_ThoughtManager.spawnWall = (thoughtsList[(int)currentStage]).spawnWall;
+
+                    m_ThoughtManager.timeTillWall = (thoughtsList[(int)currentStage]).timeTillWall;
+
                 }
                 else
                 {

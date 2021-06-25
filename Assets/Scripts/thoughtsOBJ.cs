@@ -20,4 +20,9 @@ public class thoughtsOBJ : ScriptableObject
     public SpawnModes spawnMode;
 
     public int toSpawn;
+
+    public bool canMoveThoughts;
+
+    public bool spawnWall;
+    public float timeTillWall;
 }

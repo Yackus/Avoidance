@@ -29,7 +29,7 @@ public class GameManager_2D : MonoBehaviour
 
     public GameObject ringPrefab;
 
-    ProgressManager m_progressManager;
+    public ProgressManager m_progressManager;
 
     // Start is called before the first frame update
     void Start()
@@ -92,6 +92,10 @@ public class GameManager_2D : MonoBehaviour
 
             if (_ring.transform.position.x < -12 || _ring.transform.position.y < -12)
             {
+                if (_ring.GetComponent<Ring>().attachedThought)
+                {
+                    Destroy(_ring.GetComponent<Ring>().attachedThought);
+                }
                 Destroy(_ring);
             }
         }

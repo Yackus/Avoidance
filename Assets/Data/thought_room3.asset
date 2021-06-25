@@ -20,3 +20,4 @@ MonoBehaviour:
   nextSceneOnClear: 1
   spawnMode: 0
   toSpawn: 4
+  canMoveThoughts: 1

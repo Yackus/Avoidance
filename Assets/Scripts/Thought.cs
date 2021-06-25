@@ -10,6 +10,8 @@ public class Thought : MonoBehaviour
     public bool onMouse = false;
     public bool beenTouched = false;
 
+    public bool canMove;
+
     private void Awake()
     {
         cam = GameObject.Find("PixelPerfectCamera").GetComponent<Camera>(); ;
@@ -20,7 +22,7 @@ public class Thought : MonoBehaviour
     {
         Vector3 screenPos = cam.WorldToScreenPoint(transform.position);
 
-        if (Input.GetMouseButton(0))
+        if (canMove && Input.GetMouseButton(0))
         { 
             Debug.Log("down");
             //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

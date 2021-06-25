@@ -88,4 +88,9 @@ public class BirdMovement : MonoBehaviour
             transform.position += new Vector3(0, velocity.y, 0) * Time.deltaTime;
         }
     }
+
+    public Vector2 GetVel()
+    {
+        return velocity;
+    }
 }

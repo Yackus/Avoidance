@@ -24,9 +24,9 @@ public class Ring : MonoBehaviour
             {
                 attachedThought.transform.position = Camera.main.WorldToScreenPoint(transform.position);
 
-                if (Vector2.Distance( bird.transform.position, transform.position) < 1.0f)
+                if (Vector2.Distance( bird.transform.position, transform.position) < 3.0f)
                 {
-                    transform.position += transform.position - bird.transform.position;
+                    transform.position += ((transform.position - bird.transform.position).normalized + (Vector3)bird.GetComponent<BirdMovement>().GetVel()) * Time.deltaTime ;
                 }
             }
             else

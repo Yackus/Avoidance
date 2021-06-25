@@ -23,11 +23,18 @@ public class ThoughtManager : MonoBehaviour
 
     public bool clearToProgress;
 
+    public bool canMoveThoughts;
+
     public thoughtsOBJ.SpawnModes spawnMode;
 
     //public ProgressManager m_progressManager;
 
     public GameManager_2D m_gameManager;
+
+    public bool spawnWall;
+    public float timeTillWall;
+
+    float startTime;
 
 
     // Start is called before the first frame update
@@ -36,19 +43,6 @@ public class ThoughtManager : MonoBehaviour
         lastSpawnTime = 0;
 
         m_thoughts.Clear();
-
-        //if (!m_progressManager)
-        //{
-        //    GameObject pm = GameObject.Find("ProgressManager");
-        //    if (pm)
-        //    {
-        //        m_progressManager = pm.GetComponent<ProgressManager>();
-        //    }
-        //    else
-        //    {
-        //        Debug.Log("Failed to find progress manager");
-        //    }
-        //}
 
         bird = GameObject.Find("Bird");
 
@@ -65,6 +59,8 @@ public class ThoughtManager : MonoBehaviour
                 Debug.Log("Failed to find game manager");
             }
         }
+
+        startTime = Time.time;
     }
 
     // Update is called once per frame
@@ -87,6 +83,22 @@ public class ThoughtManager : MonoBehaviour
         float w = Screen.width / 2;
         float h = Screen.height / 2;
 
+        if (spawnWall)
+        {
+            if (toSpawn > 0 && Time.time - startTime > timeTillWall)
+            {
+                float x = Random.Range(w, w + 100);
+                float y = Random.Range(-h + 100, h - 100);
+
+                SpawnThought(new Vector3(x, y, 0), new Vector3(-300,0));
+            }
+
+            if (Time.time - startTime > timeTillWall + 5)
+            {
+                m_gameManager.m_progressManager.NextStage();
+            }
+        }
+
         switch (spawnMode)
         {
             case thoughtsOBJ.SpawnModes.random:
@@ -95,7 +107,7 @@ public class ThoughtManager : MonoBehaviour
                     float x = Random.Range(-w+100, w-100);
                     float y = Random.Range(-h+100, h-100);
 
-                    SpawnThought(new Vector3(x,y,0));
+                    SpawnThought(new Vector3(x,y,0), Vector3.zero);
                 }
                 break;
 
@@ -105,7 +117,7 @@ public class ThoughtManager : MonoBehaviour
                     float x = (w + 100) * (Random.value > 0.5f ? 1 : -1) ;
                     float y = (h + 100) * (Random.value > 0.5f ? 1 : -1);
 
-                    SpawnThought(new Vector3(x, y, 0));
+                    SpawnThought(new Vector3(x, y, 0), Vector3.zero);
                 }
                 break;
 
@@ -118,7 +130,7 @@ public class ThoughtManager : MonoBehaviour
 
                         if (ringScript && ringScript.attachedThought == null && ringScript.noMoreRings == false)
                         {
-                            SpawnThought(Vector3.zero, ringScript);
+                            SpawnThought(Vector3.zero, Vector3.zero, ringScript);
                         }
                     }
                 }
@@ -131,7 +143,7 @@ public class ThoughtManager : MonoBehaviour
         
     }
 
-    private void SpawnThought(Vector3 _pos, Ring _ringToAttach = null)
+    private void SpawnThought(Vector3 _pos, Vector3 _vel, Ring _ringToAttach = null)
     {
         toSpawn--;
         lastSpawnTime = Time.time;
@@ -146,5 +158,9 @@ public class ThoughtManager : MonoBehaviour
             _ringToAttach.attachedThought = t;
             _ringToAttach.bird = bird;
         }
+
+        t.GetComponent<Thought>().canMove = canMoveThoughts;
+
+        t.GetComponent<Rigidbody2D>().velocity = _vel;
     }
 }
