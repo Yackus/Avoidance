@@ -8,7 +8,7 @@ public class Thought : MonoBehaviour
     public Camera cam;
 
     public bool onMouse = false;
-    bool beenTouched = false;
+    public bool beenTouched = false;
 
     private void Awake()
     {
@@ -22,7 +22,6 @@ public class Thought : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         { 
-
             Debug.Log("down");
             //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             //RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);

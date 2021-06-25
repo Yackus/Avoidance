@@ -1298,10 +1298,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1395309309, guid: c88016d086363994aa001d8c0d78579a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1954170466883776324, guid: c88016d086363994aa001d8c0d78579a, type: 3}
       propertyPath: m_Name
       value: Ring

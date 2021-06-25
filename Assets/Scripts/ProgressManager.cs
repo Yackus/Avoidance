@@ -19,6 +19,7 @@ public class ProgressManager : MonoBehaviour
     };
 
     public List<messagesOBJ> messagesList;
+    public List<thoughtsOBJ> thoughtsList;
 
     public Stages currentStage;
     
@@ -33,8 +34,13 @@ public class ProgressManager : MonoBehaviour
 
     bool loadNewStage = false;
 
+    bool removeFade = false;
+    bool startFade = false;
+
     public MessageManager m_MessageManager;
     public ThoughtManager m_ThoughtManager;
+
+    public GameObject fade;
 
     private void Awake()
     {
@@ -47,16 +53,37 @@ public class ProgressManager : MonoBehaviour
         startTime = Time.time;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnLevelWasLoaded(int level)
     {
         if (!m_ThoughtManager && findThoughtManager)
         {
             GameObject tm = GameObject.Find("ThoughtManager");
             if (tm)
             {
-                findThoughtManager = false;
                 m_ThoughtManager = tm.GetComponent<ThoughtManager>();
+
+                //m_ThoughtManager.m_progressManager = this;
+
+                if (thoughtsList[(int)currentStage] && (thoughtsList[(int)currentStage]).thoughts.Count > 0 && m_ThoughtManager.toSpawn > 0)
+                {
+                    m_ThoughtManager.possibleThoughts = (thoughtsList[(int)currentStage]).thoughts;
+
+                    m_ThoughtManager.toSpawn = (thoughtsList[(int)currentStage]).toSpawn;
+
+                    m_ThoughtManager.spawnMode = (thoughtsList[(int)currentStage]).spawnMode;
+                }
+                else
+                {
+                    m_ThoughtManager.toSpawn = 0;
+                }
+
+                
+
+
+            }
+            else
+            {
+                Debug.Log("Failed to find thought manager");
             }
         }
 
@@ -67,18 +94,45 @@ public class ProgressManager : MonoBehaviour
             if (mm)
             {
                 m_MessageManager = mm.GetComponent<MessageManager>();
-            }
 
-            startTime = Time.time;
+                m_MessageManager.messages = (messagesList[(int)currentStage]).messages;
+            }
+            else
+            {
+                Debug.Log("Failed to find message manager");
+            }
         }
 
+        startTime = Time.time;
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (startFade)
+        {
+            fade.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, fade.GetComponent<SpriteRenderer>().color.a + 0.01f);
+
+            if (fade.GetComponent<SpriteRenderer>().color.a >= 1)
+            {
+                NextStage();
+            }
+        }
+
+        if (removeFade)
+        {
+            fade.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, fade.GetComponent<SpriteRenderer>().color.a - 0.01f);
+
+            if (fade.GetComponent<SpriteRenderer>().color.a <= 0)
+            {
+                removeFade = false;
+            }
+        }
 
         //Update the messages for each stage
         if (m_MessageManager && !messageStarted && Time.time - startTime >= timeBeforeMessage)
         {
             messageStarted = true;
-            m_MessageManager.messages = (messagesList[(int)currentStage]).messages;
             m_MessageManager.StartMessages();
         }
 
@@ -104,21 +158,25 @@ public class ProgressManager : MonoBehaviour
     /// </summary>
     public void NextStage()
     {
-        Debug.Log("Next!");
-        currentStage++;
-        if (m_MessageManager) m_MessageManager.noMoreMessages = false;
-        m_MessageManager = null;
-        findMessageManager = true;
         loadNewStage = true;
-        messageStarted = false;
-
-        m_ThoughtManager = null;
-        findThoughtManager = true;
+        startFade = true;
 
         //If needing to load new stage, its done here
-        if (loadNewStage)
+        if (loadNewStage && fade.GetComponent<SpriteRenderer>().color.a >= 1)
         {
             loadNewStage = false;
+            removeFade = true;
+            startFade = false;
+
+            currentStage++;
+            if (m_MessageManager) m_MessageManager.noMoreMessages = false;
+            m_MessageManager = null;
+            findMessageManager = true;
+            loadNewStage = true;
+            messageStarted = false;
+
+            m_ThoughtManager = null;
+            findThoughtManager = true;
 
             switch (currentStage)
             {
