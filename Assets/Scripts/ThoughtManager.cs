@@ -8,8 +8,10 @@ public class ThoughtManager : MonoBehaviour
 {
     public GameObject m_thoughtPref;
 
-    public float spawnTime = 2;
+    public float spawnTime = 0.5f;
     float lastSpawnTime;
+
+    float startDelay = 4.0f;
 
     public GameObject canvas;
 
@@ -102,22 +104,13 @@ public class ThoughtManager : MonoBehaviour
         switch (spawnMode)
         {
             case thoughtsOBJ.SpawnModes.random:
-                if (toSpawn > 0 && Time.time - lastSpawnTime > spawnTime)
+                if (toSpawn > 0 && Time.time - lastSpawnTime > spawnTime + startDelay)
                 {
+                    startDelay = 0;
                     float x = Random.Range(-w+100, w-100);
                     float y = Random.Range(-h+100, h-100);
 
                     SpawnThought(new Vector3(x,y,0), Vector3.zero);
-                }
-                break;
-
-            case thoughtsOBJ.SpawnModes.fromEdges:
-                if (toSpawn > 0 && Time.time - lastSpawnTime > spawnTime)
-                {
-                    float x = (w + 100) * (Random.value > 0.5f ? 1 : -1) ;
-                    float y = (h + 100) * (Random.value > 0.5f ? 1 : -1);
-
-                    SpawnThought(new Vector3(x, y, 0), Vector3.zero);
                 }
                 break;
 

@@ -13,7 +13,6 @@ public class thoughtsOBJ : ScriptableObject
     public enum SpawnModes
     {
         random,
-        fromEdges,
         onRings
     }
 

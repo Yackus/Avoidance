@@ -26,7 +26,7 @@ public class Ring : MonoBehaviour
 
                 if (Vector2.Distance( bird.transform.position, transform.position) < 3.0f)
                 {
-                    transform.position += 5 * (transform.position - bird.transform.position) * Time.deltaTime;
+                    GetComponent<Rigidbody2D>().velocity = (transform.position - bird.transform.position);
                     GetComponent<Rigidbody2D>().gravityScale = 1;
                 }
             }

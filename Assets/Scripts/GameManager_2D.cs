@@ -47,6 +47,11 @@ public class GameManager_2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (m_progressManager && m_progressManager.m_MessageManager && !m_progressManager.m_MessageManager.noMoreMessages)
+        {
+            return;
+        }
+
         //Clear null gameobjects
         for (int i = m_allRings.Count - 1; i >= 0; i--)
         {

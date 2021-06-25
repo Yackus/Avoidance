@@ -15,7 +15,7 @@ MonoBehaviour:
   thoughts:
   - bad thought for game  2
   nextSceneOnClear: 0
-  spawnMode: 2
+  spawnMode: 1
   toSpawn: 100
   canMoveThoughts: 1
   spawnWall: 0
