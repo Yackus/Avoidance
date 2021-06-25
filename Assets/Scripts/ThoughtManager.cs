@@ -79,11 +79,6 @@ public class ThoughtManager : MonoBehaviour
                 m_thoughts.RemoveAt(i);
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene("Room");
-        }
     }
 
     private void FixedUpdate()
@@ -142,7 +137,7 @@ public class ThoughtManager : MonoBehaviour
         lastSpawnTime = Time.time;
         
         GameObject t = Instantiate(m_thoughtPref, Vector3.zero, Quaternion.identity, canvas.transform);
-        t.GetComponent<Thought>().text.GetComponent<TextMeshProUGUI>().text = possibleThoughts[Random.Range(0, possibleThoughts.Count)];
+        if (possibleThoughts.Count > 0) t.GetComponent<Thought>().text.GetComponent<TextMeshProUGUI>().text = possibleThoughts[Random.Range(0, possibleThoughts.Count)];
         t.transform.localPosition = _pos;
         m_thoughts.Add(t);
 
