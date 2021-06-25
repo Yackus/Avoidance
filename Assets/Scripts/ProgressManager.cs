@@ -224,6 +224,7 @@ public class ProgressManager : MonoBehaviour
                     break;
 
                 case Stages.end:
+                    SceneManager.LoadScene("Credits");
                     break;
 
                 default:
