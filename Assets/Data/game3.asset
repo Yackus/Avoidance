@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: game3
   m_EditorClassIdentifier: Assembly-CSharp::messagesOBJ
   messages:
-  - what
+  - What?!? I can't get rid of these thoughts anymore
   nextSceneOnClear: 0
