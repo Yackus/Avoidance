@@ -18,3 +18,6 @@ MonoBehaviour:
   spawnMode: 0
   toSpawn: 1
   canMoveThoughts: 1
+  spawnWall: 0
+  timeTillWall: 0
+  spawnTime: 2

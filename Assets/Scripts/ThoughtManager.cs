@@ -155,5 +155,7 @@ public class ThoughtManager : MonoBehaviour
         t.GetComponent<Thought>().canMove = canMoveThoughts;
 
         t.GetComponent<Rigidbody2D>().velocity = _vel;
+
+        t.transform.SetAsFirstSibling();
     }
 }

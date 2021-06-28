@@ -20,3 +20,4 @@ MonoBehaviour:
   canMoveThoughts: 1
   spawnWall: 0
   timeTillWall: 0
+  spawnTime: 2

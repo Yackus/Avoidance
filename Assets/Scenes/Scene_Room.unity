@@ -988,14 +988,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MessageManager
       objectReference: {fileID: 0}
-    - target: {fileID: 6437509261595086698, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 519420031}
-    - target: {fileID: 6437509261595086702, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
-      propertyPath: m_Name
-      value: MessageCanvas
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea666ba555d49664a81194c49ff9d5de, type: 3}
 --- !u!1 &1908148538

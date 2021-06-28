@@ -24,4 +24,6 @@ public class thoughtsOBJ : ScriptableObject
 
     public bool spawnWall;
     public float timeTillWall;
+
+    public float spawnTime;
 }

@@ -17,7 +17,10 @@ MonoBehaviour:
   - bad thought for room 4  v2
   - bad thought for room 4  v3
   - bad thought for room 4  v4
-  nextSceneOnClear: 1
+  nextSceneOnClear: 0
   spawnMode: 0
   toSpawn: 10
-  canMoveThoughts: 1
+  canMoveThoughts: 0
+  spawnWall: 0
+  timeTillWall: 0
+  spawnTime: 0.5

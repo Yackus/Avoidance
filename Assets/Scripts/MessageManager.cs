@@ -18,6 +18,8 @@ public class MessageManager : MonoBehaviour
 
     public List<string> messages;
 
+    public GameObject portrait;
+
     void Start()
     {
         noMoreMessages = false;
@@ -39,7 +41,7 @@ public class MessageManager : MonoBehaviour
     public void StartMessages()
     {
         updateText = true;
-        button.SetActive(true);
+        button.transform.localPosition = new Vector3(0,-260,0);
     }
 
     /// <summary>
@@ -51,7 +53,7 @@ public class MessageManager : MonoBehaviour
         {
             noMoreMessages = true;
             updateText = false;
-            button.SetActive(false);
+            button.transform.localPosition = new Vector3(0, 1000, 0);
         }
         else
         {

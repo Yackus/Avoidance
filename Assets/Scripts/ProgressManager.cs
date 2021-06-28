@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ProgressManager : MonoBehaviour
 {
@@ -15,11 +16,13 @@ public class ProgressManager : MonoBehaviour
         room3,
         game3,
         room4,
-        end
+        credits
     };
 
     public List<messagesOBJ> messagesList;
     public List<thoughtsOBJ> thoughtsList;
+    public List<float> playerAnimationStateList;
+    public List<float> portraitAnimationStateList;
 
     public Stages currentStage;
     
@@ -31,6 +34,7 @@ public class ProgressManager : MonoBehaviour
 
     bool findMessageManager = false;
     bool findThoughtManager = false;
+    bool findCharacter = false;
 
     bool loadNewStage = false;
 
@@ -39,6 +43,10 @@ public class ProgressManager : MonoBehaviour
 
     public MessageManager m_MessageManager;
     public ThoughtManager m_ThoughtManager;
+    public GameObject m_character;
+    public Animator m_characterAnimaiton;
+    public Animator m_doorAnimaiton;
+    public Animator m_portraitAnimaiton;
 
     public GameObject fade;
 
@@ -74,19 +82,19 @@ public class ProgressManager : MonoBehaviour
 
                     m_ThoughtManager.canMoveThoughts = (thoughtsList[(int)currentStage]).canMoveThoughts;
 
+                    m_ThoughtManager.clearToProgress = (thoughtsList[(int)currentStage]).nextSceneOnClear;
+
                     m_ThoughtManager.spawnWall = (thoughtsList[(int)currentStage]).spawnWall;
 
                     m_ThoughtManager.timeTillWall = (thoughtsList[(int)currentStage]).timeTillWall;
+
+                    m_ThoughtManager.spawnTime = (thoughtsList[(int)currentStage]).spawnTime;
 
                 }
                 else
                 {
                     m_ThoughtManager.toSpawn = 0;
                 }
-
-                
-
-
             }
             else
             {
@@ -103,10 +111,59 @@ public class ProgressManager : MonoBehaviour
                 m_MessageManager = mm.GetComponent<MessageManager>();
 
                 m_MessageManager.messages = (messagesList[(int)currentStage]).messages;
+
+                GameObject pp = m_MessageManager.portrait;
+
+                if (pp)
+                {
+                    m_portraitAnimaiton = pp.GetComponent<Animator>();
+
+                    if (m_portraitAnimaiton)
+                    {
+                        m_portraitAnimaiton.SetFloat("state", portraitAnimationStateList[(int)currentStage]);
+                    }
+                }
+                else
+                {
+                    Debug.Log("Failed to find player portrait");
+                }
             }
             else
             {
                 Debug.Log("Failed to find message manager");
+            }
+
+        }
+
+        //Find the message manager and restart the timer
+        if (!m_character && findCharacter)
+        {
+            GameObject c = GameObject.Find("Character");
+            if (c)
+            {
+                m_character = c;
+
+                m_characterAnimaiton = c.GetComponent<Animator>();
+
+                if (m_characterAnimaiton)
+                {
+                    m_characterAnimaiton.SetFloat("x", playerAnimationStateList[(int)currentStage]);
+                }
+            }
+            else
+            {
+                Debug.Log("Failed to find character");
+            }
+
+            GameObject d = GameObject.Find("Door");
+
+            if (d)
+            {
+                m_doorAnimaiton = d.GetComponent<Animator>();
+            }
+            else
+            {
+                Debug.Log("Failed to find door");
             }
         }
 
@@ -123,9 +180,9 @@ public class ProgressManager : MonoBehaviour
 
         if (startFade)
         {
-            fade.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, fade.GetComponent<SpriteRenderer>().color.a + 0.005f);
+            fade.GetComponent<Image>().color = new Color(0, 0, 0, fade.GetComponent<Image>().color.a + 1.0f * Time.deltaTime);
 
-            if (fade.GetComponent<SpriteRenderer>().color.a >= 1)
+            if (fade.GetComponent<Image>().color.a >= 1)
             {
                 NextStage();
             }
@@ -133,9 +190,9 @@ public class ProgressManager : MonoBehaviour
 
         if (removeFade)
         {
-            fade.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, fade.GetComponent<SpriteRenderer>().color.a - 0.005f);
+            fade.GetComponent<Image>().color = new Color(0, 0, 0, fade.GetComponent<Image>().color.a - 1.0f * Time.deltaTime);
 
-            if (fade.GetComponent<SpriteRenderer>().color.a <= 0)
+            if (fade.GetComponent<Image>().color.a <= 0)
             {
                 removeFade = false;
             }
@@ -160,7 +217,20 @@ public class ProgressManager : MonoBehaviour
             }
             else
             {
-                NextStage();
+                if (currentStage == Stages.room4)
+                {
+                    m_doorAnimaiton.SetBool("isOpen", true);
+                    m_characterAnimaiton.SetFloat("x", 3);
+                    
+                    foreach (GameObject _t in m_ThoughtManager.m_thoughts)
+                    {
+                        if (_t) _t.GetComponent<Rigidbody2D>().velocity = _t.transform.position - new Vector3(0, 0, 0);
+                    }
+                }
+                else
+                {
+                    NextStage();
+                }
             }
         }
     }
@@ -174,7 +244,7 @@ public class ProgressManager : MonoBehaviour
         startFade = true;
 
         //If needing to load new stage, its done here
-        if (loadNewStage && fade.GetComponent<SpriteRenderer>().color.a >= 1)
+        if (loadNewStage && fade.GetComponent<Image>().color.a >= 1)
         {
             loadNewStage = false;
             removeFade = true;
@@ -196,34 +266,42 @@ public class ProgressManager : MonoBehaviour
                     break;
 
                 case Stages.room1:
+                    findCharacter = true;
                     SceneManager.LoadScene("Scene_Room");
                     break;
 
                 case Stages.game1:
+                    findCharacter = false;
                     SceneManager.LoadScene("Scene_Game");
                     break;
 
                 case Stages.room2:
+                    findCharacter = true;
                     SceneManager.LoadScene("Scene_Room");
                     break;
 
                 case Stages.game2:
+                    findCharacter = false;
                     SceneManager.LoadScene("Scene_Game");
                     break;
 
                 case Stages.room3:
+                    findCharacter = true;
                     SceneManager.LoadScene("Scene_Room");
                     break;
 
                 case Stages.game3:
+                    findCharacter = false;
                     SceneManager.LoadScene("Scene_Game");
                     break;
 
                 case Stages.room4:
+                    findCharacter = true;
                     SceneManager.LoadScene("Scene_Room");
                     break;
 
-                case Stages.end:
+                case Stages.credits:
+                    findCharacter = false;
                     SceneManager.LoadScene("Credits");
                     break;
 
