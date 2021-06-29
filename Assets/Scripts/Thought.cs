@@ -28,7 +28,7 @@ public class Thought : MonoBehaviour
             //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             //RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
 
-            if (Vector2.Distance((Vector2)(Input.mousePosition), (Vector2)(transform.position)) < 100)
+            if (Vector2.Distance((Vector2)(Input.mousePosition), (Vector2)(transform.position)) < 150)
             {
                 Debug.Log("on obj");
                 beenTouched = true;
