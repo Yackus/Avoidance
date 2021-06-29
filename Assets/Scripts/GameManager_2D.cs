@@ -80,6 +80,7 @@ public class GameManager_2D : MonoBehaviour
             //Going through ring gives points
             if (_ringRB.gravityScale == 0 && Vector3.Distance(_ring.transform.position, m_bird.transform.position) < 0.5f)
             {
+                GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayRingDing();
                 _ringRB.gravityScale = 1;
                 m_currentScore += 1;
 

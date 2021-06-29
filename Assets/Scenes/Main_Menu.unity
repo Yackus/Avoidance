@@ -711,6 +711,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1056071032}
   - component: {fileID: 1056071033}
+  - component: {fileID: 1056071034}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -742,7 +743,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 34284e55836d7134fa71abfe79c70f28, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8d9a6e607ac04d04bab8df43eaeb1f6a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -828,6 +829,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1056071034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056071031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa403ad85e4d5cd42b0ded4fb5f8fc08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ringDing: {fileID: 8300000, guid: 12f65ed488ba4a845a773d1bd2a631a4, type: 3}
+  click: {fileID: 8300000, guid: ea1e63bbcc60d4940a131ac8bc157066, type: 3}
 --- !u!1 &1117009358
 GameObject:
   m_ObjectHideFlags: 0

@@ -49,6 +49,7 @@ public class MessageManager : MonoBehaviour
     /// </summary>
     public void NextText()
     {
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayClick();
         if (currentMessage + 1 >= messages.Count)
         {
             noMoreMessages = true;
