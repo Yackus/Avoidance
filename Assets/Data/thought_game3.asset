@@ -13,8 +13,23 @@ MonoBehaviour:
   m_Name: thought_game3
   m_EditorClassIdentifier: 
   thoughts:
-  - bad thought for game 3  v1
-  - bad thought for game 3  v2
+  - don't even both trying
+  - I cant handle this anymore
+  - why do I even bother tryng
+  - I feel so lost
+  - what am I doing with my life
+  - why am I never happy
+  - I just cant do anything right
+  - why is everything so hard
+  - I'm not good enough for anything
+  - I'll never be good enough
+  - why am I even here
+  - whats the point in doing anything
+  - it's not gonna get better, so why try
+  - why cant I jsut be happy
+  - my life is a mess
+  - this is too overwhelming
+  - nothing good ever happens
   nextSceneOnClear: 0
   spawnMode: 1
   toSpawn: 100
