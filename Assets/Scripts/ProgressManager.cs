@@ -173,11 +173,6 @@ public class ProgressManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            NextStage();
-        }
-
         if (startFade)
         {
             fade.GetComponent<Image>().color = new Color(0, 0, 0, fade.GetComponent<Image>().color.a + 1.0f * Time.deltaTime);
